@@ -2,24 +2,39 @@ import comidas.*
 import comensales.*
 describe "Test de Comensales" {
 	
+	var veg1 = new Vegetarianos(peso=68500) 
+	var comensalhambre1= new Hambrepopular(peso=85000)
+	var palfino1= new DePaladarFino(peso=75000)
+	
+	var provo1= new Provoleta(peso=190,tieneEspecies=true)
+	var hambVeg1 = new Hamburguesavegetariana(peso=250,legumbre="garbanzos",pan="masaMadre")
+	var hambVeg2 = new Hamburguesavegetariana(peso=250,legumbre="garbanzos",pan="masaMadre")
+	var hambCarne1 = new HamburguesaDeCarne(pan="masaMadre",peso=250)
+	var hambCarne2 = new HamburguesaDeCarne(pan="casero",peso=250)
+	
 	method initialize() {
+		
 		
 	}
 	
 	test "Vegetariano satisfecho " {
-		assert.that(true)
+		veg1.comer(provo1)
+		veg1.comer(hambVeg1)
+		veg1.comer(hambVeg2)
+		assert.that(veg1.estaSatisfecho())
 	}
 
 	test "Popular no satisfecho" {
-		assert.notThat(false)	
+		assert.notThat(comensalhambre1.estaSatisfecho())	
 	}	
 	
 	test "Paladar Fino, le agrada Hamburgesa de carne de 250 gramos con pan de masa madre." {
-		assert.that(true)	
+		
+		assert.that(palfino1.leAgrada(hambCarne1))	
 	}
 	
 	test "Paladar No Fino, no le agrada Hamburguesa de carne de 250 gramos con pan casero." {
-		assert.notThat(false)	
+		assert.notThat(palfino1.leAgrada(hambCarne2))	
 	}
 	
 }
