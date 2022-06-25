@@ -1,3 +1,7 @@
+/*
+ * Elegir plato no esta correcto
+ */
+
 import comidas.*
 import comensales.*
 
@@ -17,11 +21,13 @@ object cocina{
 	
 	method comidasQueLeGustan(unComensal) = comidasPreparadas.filter({ c => unComensal.leAgrada(c) })
 		
-	method poderElegirPlato(unComensal) {if (self.noComidasPreparadas())
-										self.error("NO HAY PLATOS")
-										comidasPreparadas.anyOne({ c =>unComensal.leAgrada(c)})
-										
-										}
+	method poderElegirPlato(unComensal) {
+		if (self.comidasQueLeGustan(unComensal))
+			self.error("NO HAY PLATOS")
+		const plato = self.comidasQueLeGustan(unComensal).anyOne()
+		comidasPreparadas.remove(plato)
+		unComensal.comer(plato)
+		}
 	 
 	
 	method noComidasPreparadas() = comidasPreparadas.isEmpty()
