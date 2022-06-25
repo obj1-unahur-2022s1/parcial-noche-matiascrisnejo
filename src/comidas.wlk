@@ -1,15 +1,40 @@
+/* La mejor opción para manejar el peso en las comidas era la siguiente
+. método abstracto peso en Plato
+. const property peso en Provoleta
+. en esAbundante() usar self.peso()
+. En los test no hace falta pasarle el peso a las hamburguesas y a la parrillada
+/*
+ * 
+ */ 
+
+/* Los panes debían ser 3 objetos y a la hamburguesa debías configurar el pan
+ * y preguntarle a cada pan su puntuacion
+ object panIndustrial{
+	method puntos()= 0
+}
+
+object panCasero{
+	method puntos()= 20
+}
+
+object panDeMasa{
+	method puntos()= 45
+}	
+ */
+
 class Plato {
- var property peso
+ 	//var property peso
+ 	method peso()
  	
- 
 	
 	method aptoVegetariano()
-	method esAbundante()= peso > 250
+	method esAbundante()= self.peso() > 250
 	method suValoracion()
 }
 
 class Provoleta inherits Plato{
 	var property tieneEspecies
+	const property peso
 	
 	override method aptoVegetariano() = not tieneEspecies
 	method esEspecial() = self.esAbundante() or tieneEspecies
@@ -19,15 +44,13 @@ class Provoleta inherits Plato{
 
 class HamburguesaDeCarne inherits Plato{
 	
-	var property pan
+	const property pan 
 	
 	override method peso() = 250
 	override method aptoVegetariano() = false
-	override method suValoracion()= 60 + self.valoracionDePan()
+	override method suValoracion()= 60 + pan.puntos()
 	
-	method valoracionDePan() = if(pan == "industrial"){0}
-							 else if(pan == "casero"){20}
-							 else{45} 
+
 	
 }
 
@@ -59,7 +82,17 @@ class CorteDeCarne{
 	
 }
 
+object panIndustrial{
+	method puntos()= 0
+}
 
+object panCasero{
+	method puntos()= 20
+}
+
+object panDeMasa{
+	method puntos()= 45
+}
 
 
 

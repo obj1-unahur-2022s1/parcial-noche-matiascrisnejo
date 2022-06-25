@@ -1,13 +1,17 @@
+/*
+ * Usar la delegación en métodos auxiliares. En  ```estaSatisfecho()``` de Comensales no delegaste para sumar los pesos, 
+ * y si lo hicieste bien en DePaladarFino y Vegetarianos para la condicion adicional.
+ */
 import comidas.*
 
 class Comensales {
-	const property comidasQueComio = []
+	const comidasQueComio = []
 	var property peso
 	
 	method leAgrada(unaComida)
 
 	method comer(unaComida) = comidasQueComio.add(unaComida)
-	
+	//
 	method estaSatisfecho() = comidasQueComio.sum({ c => c.peso()})  >= peso/100 
 	
 }

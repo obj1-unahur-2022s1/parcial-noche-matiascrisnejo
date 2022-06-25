@@ -1,11 +1,14 @@
+//Correcciones varios para ajustar el peso y panes
+// mover cosas al inizializate()
+
 import comidas.*
 describe "Test de Comidas" {
-	var hambCarne1 = new HamburguesaDeCarne(pan="casero",peso=250)
-	var hambVeg1 = new Hamburguesavegetariana(peso=250,legumbre="garbanzos",pan="masaMadre")
+	var hambCarne1 = new HamburguesaDeCarne(pan=panCasero)
+	var hambVeg1 = new Hamburguesavegetariana(legumbre="garbanzos",pan=panDeMasa)
 	var provo1= new Provoleta(peso=190,tieneEspecies=true)
 	
 	
-	var parri1 = new Parrillada(peso=500)
+	var parri1 = new Parrillada()
 	
 	var asado= new CorteDeCarne(calidad=10,peso=250)
 	var entrania= new CorteDeCarne(calidad=7,peso=200)
@@ -13,7 +16,9 @@ describe "Test de Comidas" {
 	
 	
 	method initialize() {
-					
+		parri1.agregarCorte(asado)
+		parri1.agregarCorte(entrania)
+		parri1.agregarCorte(chorizo)		
 	}
 	
 	test "Valoración de la Hambruguesa de Carne con pan casero" {
@@ -28,14 +33,8 @@ describe "Test de Comidas" {
 		assert.that(provo1.esEspecial())	
 	}
 	
-	test "Parrillada" {
-		parri1.agregarCorte(asado)
-		parri1.agregarCorte(entrania)
-		parri1.agregarCorte(chorizo)
-		
-		
+	test "Parrillada" {		
 		assert.equals(147,parri1.suValoracion())
-		
 	}
 	
 }

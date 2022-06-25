@@ -1,3 +1,5 @@
+//Correcciones varios para ajustar el peso y panes
+// mover cosas al inizializate()
 import comidas.*
 import comensales.*
 describe "Test de Comensales" {
@@ -7,20 +9,19 @@ describe "Test de Comensales" {
 	var palfino1= new DePaladarFino(peso=75000)
 	
 	var provo1= new Provoleta(peso=190,tieneEspecies=true)
-	var hambVeg1 = new Hamburguesavegetariana(peso=250,legumbre="garbanzos",pan="masaMadre")
-	var hambVeg2 = new Hamburguesavegetariana(peso=250,legumbre="garbanzos",pan="masaMadre")
-	var hambCarne1 = new HamburguesaDeCarne(pan="masaMadre",peso=250)
-	var hambCarne2 = new HamburguesaDeCarne(pan="casero",peso=250)
+	var hambVeg1 = new Hamburguesavegetariana(legumbre="garbanzos",pan="masaMadre")
+	var hambVeg2 = new Hamburguesavegetariana(legumbre="garbanzos",pan="masaMadre")
+	var hambCarne1 = new HamburguesaDeCarne(pan=panDeMasa)
+	var hambCarne2 = new HamburguesaDeCarne(pan=panCasero)
 	
 	method initialize() {
-		
+		veg1.comer(provo1)
+		veg1.comer(hambVeg1)
+		veg1.comer(hambVeg2)
 		
 	}
 	
 	test "Vegetariano satisfecho " {
-		veg1.comer(provo1)
-		veg1.comer(hambVeg1)
-		veg1.comer(hambVeg2)
 		assert.that(veg1.estaSatisfecho())
 	}
 
